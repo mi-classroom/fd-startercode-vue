@@ -1,0 +1,17 @@
+{
+  {% assign pages = site.articles %}
+{% for page in pages %}
+{% if page.slideshow %} 
+"{{page.id}}" : [
+  {% for item in page.slideshow %}
+    {
+      "title" : "{{item.title}}",
+      "caption" : "{{item.caption}}",
+      "image" : "{{ page.url | relative_url }}/images/{{item.image}}"
+    }
+    {% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  ]
+{% endif %}
+{% endfor %}
+}
